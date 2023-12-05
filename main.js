@@ -119,4 +119,32 @@ document.addEventListener("DOMContentLoaded", function () {
     startButton.addEventListener("click", startGame);
     restartButton.addEventListener("click", restartGame);
   });
+  function finishGame(winningCar, metrol) {
+    gameStarted = false;
+  
+    car1.style.transition = "none";
+    car2.style.transition = "none";
+  
+    if (winningCar === car1 && car2.offsetLeft >= wall.offsetLeft) {
+      // Both cars reached the finish line simultaneously
+      alert("Hòa! Cả hai xe đều chiến thắng!");
+    } else {
+      // Only one car reached the finish line
+      alert(`Xe ${winningCar.className} chiến thắng!`);
+    }
+  
+    car1.style.left = "0";
+    car2.style.left = "0";
+  
+    // Reset the width of metrol elements
+    metrol1.style.width = "80px";
+    metrol2.style.width = "80px";
+  
+    // Clear the transition effect after a delay
+    setTimeout(function () {
+      car1.style.transition = "left 2s linear";
+      car2.style.transition = "left 2s linear";
+      metrol.style.transition = "none";
+    }, 100);
+  }
   
